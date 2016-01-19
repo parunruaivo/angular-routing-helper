@@ -1,0 +1,56 @@
+<!doctype html >
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title>Router History Test</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 0 30px 0 30px;
+        }
+    </style>
+</head>
+<body>
+
+<app></app>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+
+<script>
+    var app = angular
+            .module('app', ['ui.router'])
+            .config(Config);
+    Config.$inject = ['$stateProvider'];
+    function Config($stateProvider) {
+        $stateProvider
+                .state('one', {
+                    url: '/one',
+                    template: '<one></one>'
+                })
+                .state('two', {
+                    url: '/two',
+                    template: '<two></two>'
+                })
+                .state('three', {
+                    url: '/three',
+                    template: '<three></three>'
+                })
+    }
+</script>
+
+<script src="angular-routing-helper/src/app/app.directive.js"></script>
+<script src="angular-routing-helper/src/app/app.controller.js"></script>
+<script src="angular-routing-helper/src/app/components/state-one/state-one.directive.js"></script>
+<script src="angular-routing-helper/src/app/components/state-one/state-one.controller.js"></script>
+<script src="angular-routing-helper/src/app/components/state-two/state-two.directive.js"></script>
+<script src="angular-routing-helper/src/app/components/state-two/state-two.controller.js"></script>
+<script src="angular-routing-helper/src/app/components/state-three/state-three.directive.js"></script>
+<script src="angular-routing-helper/src/app/components/state-three/state-three.controller.js"></script>
+</body>
+</html>
