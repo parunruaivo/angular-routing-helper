@@ -22,9 +22,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
 
+
 <script>
     var app = angular
-            .module('app', ['ui.router'])
+            .module('app', ['ui.router','router'])
             .config(Config);
     Config.$inject = ['$stateProvider'];
     function Config($stateProvider) {
@@ -44,6 +45,10 @@
     }
 </script>
 
+<script src="angular-routing-helper/src/app/router/router.module.js"></script>
+<script src="angular-routing-helper/src/app/router/state-helper.service.js"></script>
+<script src="angular-routing-helper/src/app/router/state-history.service.js"></script>
+
 <script src="angular-routing-helper/src/app/app.directive.js"></script>
 <script src="angular-routing-helper/src/app/app.controller.js"></script>
 <script src="angular-routing-helper/src/app/components/state-one/state-one.directive.js"></script>
@@ -52,5 +57,7 @@
 <script src="angular-routing-helper/src/app/components/state-two/state-two.controller.js"></script>
 <script src="angular-routing-helper/src/app/components/state-three/state-three.directive.js"></script>
 <script src="angular-routing-helper/src/app/components/state-three/state-three.controller.js"></script>
+<script src="angular-routing-helper/src/app/utilities/session.service.js"></script>
+
 </body>
 </html>

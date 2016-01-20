@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app')
+        .module('router')
         .factory('StateHistory', StateHistory);
 
     StateHistory.$inject = ['Session'];

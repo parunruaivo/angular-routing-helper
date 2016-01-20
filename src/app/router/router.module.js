@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular
-        .module('router')
+        .module('router',[])
         .run(Run);
 
     Run.$inject = ['StateHelper', '$rootScope'];
