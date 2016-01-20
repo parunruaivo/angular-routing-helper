@@ -21,14 +21,18 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ui-router-extras/0.1.0/ct-ui-router-extras.min.js"></script>
 
 
 <script>
     var app = angular
-            .module('app', ['ui.router','router'])
+            .module('app', ['ui.router','ct.ui.router.extras','router'])
             .config(Config);
-    Config.$inject = ['$stateProvider'];
-    function Config($stateProvider) {
+    Config.$inject = ['$stateProvider','$urlRouterProvider'];
+    function Config($stateProvider,$urlRouterProvider) {
+
+        $urlRouterProvider.otherwise('/one');
+
         $stateProvider
                 .state('one', {
                     url: '/one',
@@ -48,6 +52,7 @@
 <script src="angular-routing-helper/src/app/router/router.module.js"></script>
 <script src="angular-routing-helper/src/app/router/state-helper.service.js"></script>
 <script src="angular-routing-helper/src/app/router/state-history.service.js"></script>
+<script src="angular-routing-helper/src/app/router/state-wrapper.service.js"></script>
 
 <script src="angular-routing-helper/src/app/app.directive.js"></script>
 <script src="angular-routing-helper/src/app/app.controller.js"></script>

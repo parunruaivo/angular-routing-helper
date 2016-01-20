@@ -9,6 +9,7 @@
 
     function RouterHelper($location, $state, StateHistory) {
         var preventCall = [];
+
         return ({
             stateChanged: stateChanged,
             locationChanged: locationChanged

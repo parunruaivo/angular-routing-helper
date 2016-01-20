@@ -16,24 +16,24 @@
             removeState: removeState
         });
 
-        function setState(stateName, state) {
+        function setState(url, state) {
             currentHistory = Session.retrieve(SESSION_KEY) || {};
 
-            currentHistory[stateName] = state;
+            currentHistory[url] = state;
 
             Session.save(SESSION_KEY, currentHistory);
         }
 
-        function getState(stateName) {
+        function getState(url) {
             currentHistory = Session.retrieve(SESSION_KEY) || {};
 
-            return currentHistory[stateName];
+            return currentHistory[url];
         }
 
-        function removeState(stateName) {
+        function removeState(url) {
             currentHistory = Session.retrieve(SESSION_KEY) || {};
 
-            delete currentHistory[stateName];
+            delete currentHistory[url];
 
             Session.save(SESSION_KEY, currentHistory);
         }
