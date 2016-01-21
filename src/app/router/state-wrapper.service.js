@@ -15,13 +15,14 @@
             previousState: previous
         });
 
-        function next(stateName, stateParams, stateOptions) {
+        function next(stateName, stateParams, stateOptions, ttl) {
 
             stateToRestore = Session.retrieve(SESSION_KEY) || {};
 
             stateToRestore[stateName] = {
                 name: $state.$current.name,
-                params: $state.$current.ownParams
+                params: $state.$current.ownParams,
+                ttl: ttl || 1
             };
 
             Session.save(SESSION_KEY, stateToRestore);
@@ -36,7 +37,11 @@
 
             nextState = angular.copy(stateToRestore[$state.$current.name]);
 
-            delete stateToRestore[$state.$current.name];
+            nextState.ttl--;
+
+            if (!nextState.ttl) {
+                delete stateToRestore[$state.$current.name];
+            }
 
             Session.save(SESSION_KEY, stateToRestore);
 

@@ -21,7 +21,7 @@
         }
 
         function next() {
-            StateWrapper.nextState('two');
+            StateWrapper.nextState('two', null, null, 3);
         }
 
         $scope.$on('$stateChangeSuccess', function () {
