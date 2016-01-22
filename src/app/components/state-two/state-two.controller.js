@@ -21,11 +21,11 @@
         }
 
         function next() {
-            StateWrapper.nextState('three');
+            StateWrapper.nextStateAndRestore('three', null, null, vm.state);
         }
 
-        $scope.$on('$stateChangeSuccess', function () {
-            vm.state.fromState = arguments[3].name;
+        $scope.$on('restore-state@two', function () {
+            vm.state = arguments[1];
         });
     }
 })();

@@ -2,27 +2,27 @@
     'use strict';
 
     angular
-        .module('router')
+        .module('ip.router')
         .factory('StateWrapper', StateWrapper);
 
-    StateWrapper.$inject = ['$state', 'Session'];
-    function StateWrapper($state, Session) {
+    StateWrapper.$inject = ['$state', 'Session', '$rootScope', '$timeout'];
+    function StateWrapper($state, Session, $rootScope, $timeout) {
 
         var stateToRestore, SESSION_KEY = 'previous-state';
 
         return ({
-            nextState: next,
-            previousState: previous
+            nextStateAndRestore: nextStateAndRestore,
+            previousState: previousState
         });
 
-        function next(stateName, stateParams, stateOptions, ttl) {
+        function nextStateAndRestore(stateName, stateParams, stateOptions, restore) {
 
             stateToRestore = Session.retrieve(SESSION_KEY) || {};
 
             stateToRestore[stateName] = {
                 name: $state.$current.name,
                 params: $state.$current.ownParams,
-                ttl: ttl || 1
+                restore: restore
             };
 
             Session.save(SESSION_KEY, stateToRestore);
@@ -31,21 +31,24 @@
 
         }
 
-        function previous() {
+        function previousState() {
             var nextState;
             stateToRestore = Session.retrieve(SESSION_KEY) || {};
 
             nextState = angular.copy(stateToRestore[$state.$current.name]);
 
-            nextState.ttl--;
-
-            if (!nextState.ttl) {
-                delete stateToRestore[$state.$current.name];
-            }
+            delete stateToRestore[$state.$current.name];
 
             Session.save(SESSION_KEY, stateToRestore);
 
-            next(nextState.name, nextState.params);
+
+            if (nextState.restore) {
+                $timeout(function timeout() {
+                    $rootScope.$broadcast('restore-state@' + nextState.name, nextState.restore);
+                }, 0);
+
+            }
+            nextStateAndRestore(nextState.name, nextState.params);
         }
     }
 })();

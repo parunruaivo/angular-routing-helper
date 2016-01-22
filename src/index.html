@@ -26,36 +26,18 @@
 
 <script>
     var app = angular
-            .module('app', ['ui.router','ct.ui.router.extras','router'])
-            .config(Config);
-    Config.$inject = ['$stateProvider','$urlRouterProvider'];
-    function Config($stateProvider,$urlRouterProvider) {
-
-        $urlRouterProvider.otherwise('/one');
-
-        $stateProvider
-                .state('one', {
-                    url: '/one',
-                    template: '<one></one>'
-                })
-                .state('two', {
-                    url: '/two',
-                    template: '<two></two>'
-                })
-                .state('three', {
-                    url: '/three',
-                    template: '<three></three>'
-                })
-    }
+            .module('app', ['ip.router']);
 </script>
 
-<script src="angular-routing-helper/src/app/router/router.module.js"></script>
-<script src="angular-routing-helper/src/app/router/state-helper.service.js"></script>
-<script src="angular-routing-helper/src/app/router/state-history.service.js"></script>
-<script src="angular-routing-helper/src/app/router/state-wrapper.service.js"></script>
+<script src="angular-routing-helper/src/app/utilities/router/router.module.js"></script>
+<script src="angular-routing-helper/src/app/utilities/router/router-helper.provider.js"></script>
+<script src="angular-routing-helper/src/app/utilities/router/state-helper.service.js"></script>
+<script src="angular-routing-helper/src/app/utilities/router/state-history.service.js"></script>
+<script src="angular-routing-helper/src/app/utilities/router/state-wrapper.service.js"></script>
 
 <script src="angular-routing-helper/src/app/app.directive.js"></script>
 <script src="angular-routing-helper/src/app/app.controller.js"></script>
+<script src="angular-routing-helper/src/app/app.route.js"></script>
 <script src="angular-routing-helper/src/app/components/state-one/state-one.directive.js"></script>
 <script src="angular-routing-helper/src/app/components/state-one/state-one.controller.js"></script>
 <script src="angular-routing-helper/src/app/components/state-two/state-two.directive.js"></script>
